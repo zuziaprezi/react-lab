@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import "milligram";
 
 import {useState} from "react";
 
@@ -31,7 +32,7 @@ function App() {
       </div>
        )}{
        authentictedUserName&& <div>
-           <h1>Zalogowales się {email}</h1>
+           <h3>Zalogowales się jako {email}</h3>
        <button type="button" onClick={logOut}>Wyloguj się</button>
        </div>
        }
