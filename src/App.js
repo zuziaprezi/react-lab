@@ -5,32 +5,35 @@ import {useState} from "react";
 
 function App() {
 
-    const [email, setEmail] = useState("example@example.com")
-
-
+    const [email, setEmail] = useState()
+    const [authentictedUserName, setAuthenticatedUserName] = useState(email)
     function handleChange(event) {
         setEmail(event.target.value);
     }
 
-    let message = '';
-    if (email.length <10){
-        message = "Twoj email jest za krótki";
-    } else if (email.length > 20) {
-        message ="Twoj email jest za dlugi"
-    } else {
-        message = "Twoj email jest w sam raz"
+    function emailAlert(){
+        alert("Twój adres email to: " + email);
     }
-    return (
+
+
+   return (
+   <div>
+   <h1>System do zapisów na zajęcia</h1>
+       { !authentictedUserName && (
       <div>
-
-        <h1>System do zapisów na zajęcia</h1>
-          <h2>Twój e-mail to: {email}</h2>
-          <div>{message}</div>
-          <input type="text" onChange={handleChange}/>
-
+          Zaloguj sie adresem email:
+      <input type="text" onChange={handleChange}/>
+    <button type="button" onClick={()=>setAuthenticatedUserName(email)}>Wchodzę</button>
       </div>
+       )}{
+       authentictedUserName&& <div>
+           <h1>Zalogowales się {email}</h1>
+       <button type="button" onClick={()=>setAuthenticatedUserName(null) }>Wyloguj się</button>
+       </div>
+       }
+  </div>
 
-  );
-}
+);
+ }
 
 export default App;
