@@ -14,6 +14,10 @@ function App() {
     function emailAlert(){
         alert("Twój adres email to: " + email);
     }
+    function logOut(){
+        setEmail(null);
+        setAuthenticatedUserName(null);
+    }
 
 
    return (
@@ -28,7 +32,7 @@ function App() {
        )}{
        authentictedUserName&& <div>
            <h1>Zalogowales się {email}</h1>
-       <button type="button" onClick={()=>setAuthenticatedUserName(null) }>Wyloguj się</button>
+       <button type="button" onClick={logOut}>Wyloguj się</button>
        </div>
        }
   </div>
