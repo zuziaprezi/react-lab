@@ -1,44 +1,35 @@
 import logo from './logo.svg';
 import './App.css';
 import "milligram";
-
+import LoginForm from "./LoginForm";
+import UserPanel from "./UserPanel";
 import {useState} from "react";
+
 
 function App() {
 
-    const [email, setEmail] = useState()
-    const [authentictedUserName, setAuthenticatedUserName] = useState(email)
-    function handleChange(event) {
-        setEmail(event.target.value);
+const [loggedIn, setLoggedIn] = useState(null)
+
+    function login(username) {
+    setLoggedIn(username)
     }
 
-    function emailAlert(){
-        alert("Twój adres email to: " + email);
-    }
-    function logOut(){
-        setEmail(null);
-        setAuthenticatedUserName(null);
+    function logout() {
+        setLoggedIn(null)
     }
 
+    return (
+        <div>
+            <h1>System do zapisów na zajęcia</h1>
+            {
+                loggedIn
+                    ? <UserPanel username={loggedIn} onLogout={logout}/>
+                    : <LoginForm onLogin={login}/>
+            }
+        </div>
 
-   return (
-   <div>
-   <h1>System do zapisów na zajęcia</h1>
-       { !authentictedUserName && (
-      <div>
-          Zaloguj sie adresem email:
-      <input type="text" onChange={handleChange}/>
-    <button type="button" onClick={()=>setAuthenticatedUserName(email)}>Wchodzę</button>
-      </div>
-       )}{
-       authentictedUserName&& <div>
-           <h3>Zalogowales się jako {email}</h3>
-       <button type="button" onClick={logOut}>Wyloguj się</button>
-       </div>
-       }
-  </div>
+    );
+}
 
-);
- }
 
 export default App;
